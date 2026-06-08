@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NREMT EMT-Basic Study Guide (April 2025+)</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; line-height: 1.6; }
+.container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.sg-header { padding-bottom: 1rem; border-bottom: 1px solid #ddd; margin-bottom: 1.5rem; }
+.sg-title { font-size: 24px; font-weight: 600; color: #1a1a18; }
+.sg-subtitle { font-size: 14px; color: #666; margin-top: 4px; }
+
+.exam-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.meta-card { background: #eeeee9; border-radius: 8px; padding: 12px; }
+.meta-label { font-size: 12px; color: #666; margin-bottom: 4px; }
+.meta-val { font-size: 15px; font-weight: 600; color: #1a1a18; }
+
+.tei-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; background: #fef3cd; color: #856404; margin-left: 6px; vertical-align: middle; }
+.new-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; background: #cfe2ff; color: #084298; margin-left: 6px; vertical-align: middle; }
+
+.domain-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.tab-btn { font-size: 13px; padding: 6px 12px; border-radius: 8px; border: 1px solid #ccc; background: #fff; color: #555; cursor: pointer; transition: all 0.15s; }
+.tab-btn:hover { background: #f0f0eb; color: #1a1a18; }
+.tab-btn.active { background: #cfe2ff; color: #084298; border-color: #9ec5fe; font-weight: 600; }
+
+.domain-pct { font-size: 22px; font-weight: 600; }
+.domain-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.domain-title { font-size: 20px; font-weight: 600; color: #1a1a18; }
+.domain-desc { font-size: 14px; color: #555; margin-bottom: 1.25rem; line-height: 1.7; }
+
+.pct-bar-wrap { margin-bottom: 1.5rem; }
+.pct-bar-track { height: 6px; background: #e0e0db; border-radius: 3px; overflow: hidden; }
+.pct-bar-fill { height: 100%; border-radius: 3px; }
+
+.section-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.topic-card { border: 1px solid #e0e0db; border-radius: 12px; padding: 14px 16px; background: #fff; }
+.topic-card h4 { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 8px; }
+.topic-card ul { padding-left: 16px; }
+.topic-card li { font-size: 13px; color: #555; line-height: 1.8; }
+
+.key-points { border-left: 3px solid #9ec5fe; padding-left: 14px; margin-bottom: 1.5rem; }
+.key-points p { font-size: 13px; color: #444; line-height: 1.7; margin-bottom: 8px; }
+.key-points p:last-child { margin-bottom: 0; }
+
+.mnemonic-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.mnemonic-card { flex: 1; min-width: 200px; border: 1px solid #e0e0db; border-radius: 8px; padding: 12px 14px; background: #f5f4f0; }
+.mnemonic-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 6px; }
+.mnemonic-item { font-size: 12px; color: #555; line-height: 1.9; }
+.mnemonic-letter { font-weight: 700; color: #1a1a18; min-width: 14px; display: inline-block; }
+
+.domain-panel { display: none; }
+.domain-panel.active { display: block; }
+
+.overview-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; padding: 4px; border-radius: 6px; transition: background 0.1s; }
+.overview-bar-row:hover { background: #f0f0eb; }
+.ovr-name { font-size: 13px; color: #555; min-width: 210px; }
+.ovr-bar-track { flex: 1; height: 10px; background: #e0e0db; border-radius: 5px; overflow: hidden; }
+.ovr-bar-fill { height: 100%; border-radius: 5px; }
+.ovr-pct { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 50px; text-align: right; }
+
+.tei-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.tei-card { border: 1px solid #e0e0db; border-radius: 12px; padding: 14px 16px; background: #fff; }
+.tei-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #1a1a18; }
+.tei-card p { font-size: 13px; color: #555; line-height: 1.6; }
+
+.tip-box { border: 1px solid #a3cfbb; border-radius: 8px; padding: 12px 14px; background: #d1e7dd; margin-bottom: 1rem; }
+.tip-box p { font-size: 13px; color: #0a3622; line-height: 1.6; }
+
+@media (max-width: 600px) {
+  .ovr-name { min-width: 140px; font-size: 12px; }
+  .domain-tabs { gap: 4px; }
+  .tab-btn { font-size: 12px; padding: 5px 9px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="sg-header">
+  <div class="sg-title">NREMT EMT-Basic study guide</div>
+  <div class="sg-subtitle">Updated for the April 7, 2025 exam redesign — new domains, weightings &amp; TEIs</div>
+</div>
+
+<div class="exam-meta">
+  <div class="meta-card"><div class="meta-label">Questions (scored)</div><div class="meta-val">70–120 CAT</div></div>
+  <div class="meta-card"><div class="meta-label">Time limit</div><div class="meta-val">2 hours</div></div>
+  <div class="meta-card"><div class="meta-label">Pediatric content</div><div class="meta-val">15% of Q's</div></div>
+  <div class="meta-card"><div class="meta-label">Confidence threshold</div><div class="meta-val">95% CAT</div></div>
+  <div class="meta-card"><div class="meta-label">Attempts / cycle</div><div class="meta-val">3 per app</div></div>
+</div>
+
+<div class="domain-tabs">
+  <button class="tab-btn active" onclick="showTab('overview')">&#9783; Overview</button>
+  <button class="tab-btn" onclick="showTab('d1')">1 · Scene size-up</button>
+  <button class="tab-btn" onclick="showTab('d2')">2 · Primary assessment</button>
+  <button class="tab-btn" onclick="showTab('d3')">3 · Secondary assessment</button>
+  <button class="tab-btn" onclick="showTab('d4')">4 · Treatment &amp; transport</button>
+  <button class="tab-btn" onclick="showTab('d5')">5 · Operations</button>
+  <button class="tab-btn" onclick="showTab('tei')"><span class="tei-badge">NEW</span> TEI formats</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="overview" class="domain-panel active">
+  <div class="section-label">Domain weightings — click a bar to jump to that domain</div>
+  <div class="overview-bar-row" onclick="showTab('d2')">
+    <span class="ovr-name">Primary assessment</span>
+    <div class="ovr-bar-track"><div class="ovr-bar-fill" style="width:41%; background:#378ADD;"></div></div>
+    <span class="ovr-pct">39–43%</span>
+  </div>
+  <div class="overview-bar-row" onclick="showTab('d4')">
+    <span class="ovr-name">Patient treatment &amp; transport</span>
+    <div class="ovr-bar-track"><div class="ovr-bar-fill" style="width:22%; background:#1D9E75;"></div></div>
+    <span class="ovr-pct">20–24%</span>
+  </div>
+  <div class="overview-bar-row" onclick="showTab('d1')">
+    <span class="ovr-name">Scene size-up &amp; safety</span>
+    <div class="ovr-bar-track"><div class="ovr-bar-fill" style="width:17%; background:#BA7517;"></div></div>
+    <span class="ovr-pct">15–19%</span>
+  </div>
+  <div class="overview-bar-row" onclick="showTab('d5')">
+    <span class="ovr-name">Operations</span>
+    <div class="ovr-bar-track"><div class="ovr-bar-fill" style="width:11%; background:#888780;"></div></div>
+    <span class="ovr-pct">9–13%</span>
+  </div>
+  <div class="overview-bar-row" onclick="showTab('d3')">
+    <span class="ovr-name">Secondary assessment</span>
+    <div class="ovr-bar-track"><div class="ovr-bar-fill" style="width:7%; background:#D4537E;"></div></div>
+    <span class="ovr-pct">5–9%</span>
+  </div>
+
+  <div style="margin-top:1.5rem;" class="section-label">What changed on April 7, 2025</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Old domains → new domains</h4>
+      <ul>
+        <li>Airway, respirations &amp; ventilation → now inside Primary assessment</li>
+        <li>Cardiology &amp; resuscitation → now inside Primary assessment</li>
+        <li>Trauma → distributed across assessment domains</li>
+        <li>Medical, OB/GYN → distributed across assessment domains</li>
+        <li>Operations → retained, renumbered</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>TEIs now scored <span class="tei-badge">NEW</span></h4>
+      <ul>
+        <li>Drag-and-drop, build-a-list, option box, multiple-response</li>
+        <li>Previously unscored pilot items — now count toward your result</li>
+        <li>No clinical judgment scenarios for EMT (AEMT/Paramedic only)</li>
+        <li>Practice these formats before test day</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Weighting shift</h4>
+      <ul>
+        <li>Primary assessment now nearly half the exam</li>
+        <li>Pediatric content explicitly 15% of questions</li>
+        <li>Assessment-first thinking is the new core emphasis</li>
+        <li>Clinical decision-making weighted over protocol recall</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- DOMAIN 1 -->
+<div id="d1" class="domain-panel">
+  <div class="domain-header">
+    <span class="domain-title">Domain 1 — Scene size-up &amp; safety</span>
+    <span class="domain-pct" style="color:#BA7517;">15–19%</span>
+  </div>
+  <div class="pct-bar-wrap"><div class="pct-bar-track"><div class="pct-bar-fill" style="width:17%; background:#BA7517;"></div></div></div>
+  <p class="domain-desc">Your first domain on every call. Questions test whether you can identify hazards, determine MOI/NOI, establish scene safety, request resources, and form an initial impression — all before touching the patient.</p>
+
+  <div class="section-label">Core topics</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Scene safety</h4>
+      <ul>
+        <li>BSI/PPE selection based on mechanism and patient presentation</li>
+        <li>Environmental hazards: traffic, violence, unstable structures, utilities</li>
+        <li>Hazmat recognition — ERG basics, placard reading, isolation distances</li>
+        <li>Violence/hostile scene protocols — never enter until LE clears</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>MOI/NOI</h4>
+      <ul>
+        <li>Mechanism of injury (MOI): energy transfer, kinematics</li>
+        <li>Nature of illness (NOI): chief complaint, bystander info</li>
+        <li>Significant vs. non-significant MOI (affects spinal precautions)</li>
+        <li>Pediatric vs. adult injury patterns differ — know both</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Resource determination</h4>
+      <ul>
+        <li>Number of patients → MCI activation thresholds</li>
+        <li>ALS vs. BLS need determination from scene info</li>
+        <li>Additional units, specialty teams, helicopter LZ considerations</li>
+        <li>Early activation is never wrong — cancel if not needed</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>General impression</h4>
+      <ul>
+        <li>Age, sex, obvious distress, position of patient</li>
+        <li>Life threat identification at a glance</li>
+        <li>Sick vs. not-sick decision: informs pace of the entire call</li>
+        <li>Chief complaint from patient, family, or bystanders</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Key mnemonics</div>
+  <div class="mnemonic-row">
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">6-step scene approach</div>
+      <div class="mnemonic-item">BSI → Scene safe → MOI/NOI → # patients → Additional resources → C-spine?<br>Answer every element before patient contact.</div>
+    </div>
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">PENMAN (MCI)</div>
+      <div class="mnemonic-item">
+        <span class="mnemonic-letter">P</span> — patient count<br>
+        <span class="mnemonic-letter">E</span> — environment hazards<br>
+        <span class="mnemonic-letter">N</span> — number of agencies<br>
+        <span class="mnemonic-letter">M</span> — MOI<br>
+        <span class="mnemonic-letter">A</span> — additional resources<br>
+        <span class="mnemonic-letter">N</span> — needs (special teams)
+      </div>
+    </div>
+  </div>
+
+  <div class="key-points">
+    <div class="section-label">High-yield exam tips</div>
+    <p>Questions in this domain often test whether you protect yourself first. When in doubt, wait for scene control before entering.</p>
+    <p>On pediatric calls, consider caretaker as source of MOI information — and suspect NAT (non-accidental trauma) when MOI doesn't match injuries.</p>
+    <p>Spinal precautions are determined by MOI, not by the presence of pain. Significant MOI without complaint still warrants precautions.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 2 -->
+<div id="d2" class="domain-panel">
+  <div class="domain-header">
+    <span class="domain-title">Domain 2 — Primary assessment</span>
+    <span class="domain-pct" style="color:#185FA5;">39–43%</span>
+  </div>
+  <div class="pct-bar-wrap"><div class="pct-bar-track"><div class="pct-bar-fill" style="width:41%; background:#378ADD;"></div></div></div>
+  <p class="domain-desc">Nearly half the exam. This domain integrates what used to be separate airway, cardiac, and trauma sections. You must demonstrate sequential assessment thinking, immediate life-threat management, and priority patient decisions.</p>
+
+  <div class="section-label">Core sequence: XABCDE</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>X — Exsanguinating hemorrhage</h4>
+      <ul>
+        <li>Life-threatening external bleeding: tourniquet first for extremities</li>
+        <li>Wound packing for junctional wounds (axilla, groin, neck)</li>
+        <li>Direct pressure with wound packing for torso</li>
+        <li>Control before airway in true hemorrhagic emergency</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>A — Airway</h4>
+      <ul>
+        <li>LOC determines approach: head-tilt/chin-lift vs. jaw thrust</li>
+        <li>OPA sizing: corner of mouth to earlobe</li>
+        <li>NPA sizing: tip of nose to earlobe; contraindicated in suspected skull fx</li>
+        <li>Suction: rigid (Yankauer) for upper airway, flexible for tube/stoma</li>
+        <li>BVM: 1 breath/5–6 sec (adult), 1/3–5 sec (peds)</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>B — Breathing</h4>
+      <ul>
+        <li>Rate: normal adult 12–20; assess rate AND quality</li>
+        <li>Tidal volume: look, listen, feel — chest rise must be adequate</li>
+        <li>Adventitious sounds: crackles, wheezes, stridor, gurgling</li>
+        <li>High-flow O2 (15L NRB) for priority patients</li>
+        <li>Tension pneumo: absent breath sounds, tracheal deviation, JVD, hypotension</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>C — Circulation</h4>
+      <ul>
+        <li>Pulse: rate, quality, location (radial vs. carotid indicates BP level)</li>
+        <li>Skin: color, temperature, moisture (cool/pale/diaphoretic = shock)</li>
+        <li>Cap refill: &lt;2 sec normal; &gt;2 sec in children = significant</li>
+        <li>Reassess major bleeding after X interventions</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>D — Disability (neuro)</h4>
+      <ul>
+        <li>AVPU: Alert / Voice / Pain / Unresponsive</li>
+        <li>GCS rapid estimate: best response to verbal command</li>
+        <li>Pupils: PERRL vs. unequal, dilated, or fixed (herniation sign)</li>
+        <li>Stroke screen: Cincinnati (facial droop, arm drift, speech) or FAST</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>E — Expose / Environment</h4>
+      <ul>
+        <li>Expose injuries without compromising dignity or temperature</li>
+        <li>Prevent hypothermia: blankets after assessment</li>
+        <li>Look for medic-alert jewelry, implanted devices, PICC lines</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Priority patient criteria</div>
+  <div class="tip-box"><p>Any of the following = load and go, limit on-scene time to &lt;10 min: poor general impression, unresponsive/no gag, responsive only to pain, difficulty breathing, shock signs, complicated childbirth, chest pain with BP &lt;100, uncontrolled bleeding, altered mental status, severe pain anywhere.</p></div>
+
+  <div class="section-label">Key mnemonics</div>
+  <div class="mnemonic-row">
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">AVPU</div>
+      <div class="mnemonic-item">
+        <span class="mnemonic-letter">A</span> — Alert<br>
+        <span class="mnemonic-letter">V</span> — responds to Voice<br>
+        <span class="mnemonic-letter">P</span> — responds to Pain<br>
+        <span class="mnemonic-letter">U</span> — Unresponsive
+      </div>
+    </div>
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">Cincinnati stroke screen</div>
+      <div class="mnemonic-item">
+        <span class="mnemonic-letter">F</span> — Facial droop<br>
+        <span class="mnemonic-letter">A</span> — Arm drift<br>
+        <span class="mnemonic-letter">S</span> — Speech ("The sky is blue")<br>
+        <span class="mnemonic-letter">T</span> — Time of onset
+      </div>
+    </div>
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">CUPS priority</div>
+      <div class="mnemonic-item">
+        <span class="mnemonic-letter">C</span> — Critical<br>
+        <span class="mnemonic-letter">U</span> — Unstable<br>
+        <span class="mnemonic-letter">P</span> — Potentially unstable<br>
+        <span class="mnemonic-letter">S</span> — Stable
+      </div>
+    </div>
+  </div>
+
+  <div class="key-points">
+    <div class="section-label">High-yield exam tips</div>
+    <p>The NREMT expects you to treat life threats as you find them, not after the full assessment. If airway is compromised during A — fix it before moving to B.</p>
+    <p>Pediatric questions emphasize that respiratory failure leads to cardiac arrest in children — airway and breathing interventions are more urgent than in adults.</p>
+    <p>Absence of a radial pulse suggests systolic BP below ~80 mmHg — a clinical clue the NREMT uses frequently.</p>
+    <p>On TEI drag-and-drop questions, you may be asked to sequence an assessment or treatment — practice the order until it's automatic.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 3 -->
+<div id="d3" class="domain-panel">
+  <div class="domain-header">
+    <span class="domain-title">Domain 3 — Secondary assessment</span>
+    <span class="domain-pct" style="color:#993556;">5–9%</span>
+  </div>
+  <div class="pct-bar-wrap"><div class="pct-bar-track"><div class="pct-bar-fill" style="width:7%; background:#D4537E;"></div></div></div>
+  <p class="domain-desc">Smallest domain by weight — but straightforward points. Focus on SAMPLE history, OPQRST, head-to-toe exam technique, and ongoing reassessment.</p>
+
+  <div class="section-label">Core assessment frameworks</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>SAMPLE history</h4>
+      <ul>
+        <li><b>S</b>igns and symptoms (current)</li>
+        <li><b>A</b>llergies (medications, environmental, food)</li>
+        <li><b>M</b>edications (Rx, OTC, supplements, illicit)</li>
+        <li><b>P</b>ertinent past history</li>
+        <li><b>L</b>ast oral intake (time of last meal/drink)</li>
+        <li><b>E</b>vents leading to call</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>OPQRST (pain assessment)</h4>
+      <ul>
+        <li><b>O</b>nset — when and how did it start?</li>
+        <li><b>P</b>rovocation/palliation — better or worse with?</li>
+        <li><b>Q</b>uality — sharp, pressure, burning, tearing</li>
+        <li><b>R</b>adiation — does it move anywhere?</li>
+        <li><b>S</b>everity — 1–10 scale; compare to baseline</li>
+        <li><b>T</b>ime — duration, intermittent vs. constant</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Rapid head-to-toe exam</h4>
+      <ul>
+        <li>DCAP-BTLS at each region: deformities, contusions, abrasions, punctures, burns, tenderness, lacerations, swelling</li>
+        <li>Head: PERRL, facial symmetry, Battle's sign, raccoon eyes</li>
+        <li>Neck: JVD, tracheal position, subcutaneous emphysema</li>
+        <li>Chest: equal rise, paradoxical motion, bilateral breath sounds</li>
+        <li>Abdomen: rigidity, distension, guarding, evisceration</li>
+        <li>Pelvis: instability (assess once only — do not rock repeatedly)</li>
+        <li>Extremities: PMS — pulse, motor, sensation distal to injury</li>
+        <li>Posterior: log-roll and assess if spinal injury possible</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Baseline vital signs</h4>
+      <ul>
+        <li>Respirations: rate and quality</li>
+        <li>Pulse: rate and quality</li>
+        <li>Skin: color, temperature, moisture</li>
+        <li>BP: systolic and diastolic; compare to patient's baseline</li>
+        <li>SpO2: normal 95–100%; below 94% requires intervention</li>
+        <li>Pupils: PERRL, size in mm, response speed</li>
+        <li>Blood glucose: for AMS patients per protocol</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Ongoing reassessment frequency</div>
+  <div class="mnemonic-row">
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">Stable patient</div>
+      <div class="mnemonic-item">Reassess every 15 minutes. Repeat primary assessment, vitals, interventions check, and mental status trends.</div>
+    </div>
+    <div class="mnemonic-card">
+      <div class="mnemonic-title">Unstable / priority patient</div>
+      <div class="mnemonic-item">Reassess every 5 minutes. Any deterioration triggers reassessment and possible intervention escalation.</div>
+    </div>
+  </div>
+
+  <div class="key-points">
+    <div class="section-label">High-yield exam tips</div>
+    <p>Questions here often ask about the sequence of assessment vs. treatment. The NREMT expects you to identify the problem before treating — "assess first" is almost always the right answer.</p>
+    <p>Battle's sign and raccoon eyes are late signs — they indicate prior head injury and won't appear immediately at the scene.</p>
+    <p>Pelvic instability: assess once with gentle lateral compression. Repeated assessment risks worsening internal hemorrhage.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 4 -->
+<div id="d4" class="domain-panel">
+  <div class="domain-header">
+    <span class="domain-title">Domain 4 — Patient treatment &amp; transport</span>
+    <span class="domain-pct" style="color:#0F6E56;">20–24%</span>
+  </div>
+  <div class="pct-bar-wrap"><div class="pct-bar-track"><div class="pct-bar-fill" style="width:22%; background:#1D9E75;"></div></div></div>
+  <p class="domain-desc">Second largest domain. Covers clinical interventions, condition-specific care, and transport decisions. Content from former Airway, Cardiac, Trauma, and Medical/OB domains lives here now.</p>
+
+  <div class="section-label">Respiratory &amp; airway interventions</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Airway adjuncts</h4>
+      <ul>
+        <li>OPA: unconscious, no gag reflex; insert inverted in adults, direct in peds</li>
+        <li>NPA: conscious or semi-conscious; can use with gag reflex</li>
+        <li>Suction: max 15 sec adults, 10 sec peds per attempt</li>
+        <li>Supraglottic airways: know your local protocol scope</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Oxygen delivery</h4>
+      <ul>
+        <li>Nasal cannula: 1–6 LPM, 24–44% FiO2</li>
+        <li>Simple face mask: 6–10 LPM, 35–60% FiO2</li>
+        <li>NRB: 10–15 LPM, 60–90% FiO2 — preferred for respiratory distress</li>
+        <li>BVM with O2: near 100% FiO2 with proper seal</li>
+        <li>CPAP: where authorized — cardiogenic pulmonary edema, severe asthma</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Cardiac emergencies</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Cardiac arrest / CPR</h4>
+      <ul>
+        <li>Adult: 30:2, 100–120/min, 2–2.4 in depth, full recoil</li>
+        <li>2-rescuer peds: 15:2; infant: 2-finger or 2-thumb encircling</li>
+        <li>AED: attach as soon as available — minimize CPR interruption</li>
+        <li>Analyze → shock if advised → 2 min CPR → re-analyze</li>
+        <li>Do not stop CPR to check pulse unless AED advises "no shock"</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>ACS / chest pain</h4>
+      <ul>
+        <li>Aspirin 324 mg (if not allergic, no contraindications, per protocol)</li>
+        <li>Nitroglycerin: BP &gt;100 systolic, no PDE-5 inhibitor use in 24–48 hr</li>
+        <li>Position of comfort; oxygen if SpO2 &lt;94%</li>
+        <li>12-lead acquisition if in scope — transmit early alert if available</li>
+        <li>Rapid transport — time-sensitive intervention at hospital</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Trauma care</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Hemorrhage control</h4>
+      <ul>
+        <li>Direct pressure: first line for most wounds</li>
+        <li>Tourniquet: extremity bleeding uncontrolled; document time of application</li>
+        <li>Wound packing + direct pressure: junctional wounds (groin, axilla, neck)</li>
+        <li>Hemostatic gauze: QuikClot, Combat Gauze — protocol-dependent</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Shock management</h4>
+      <ul>
+        <li>Position: supine; keep warm with blankets</li>
+        <li>High-flow O2</li>
+        <li>Rapid transport: definitive treatment is surgical</li>
+        <li>IV fluids: ALS or protocol-dependent at EMT level</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Musculoskeletal injuries</h4>
+      <ul>
+        <li>Splint in position found (unless neurovascular compromise)</li>
+        <li>Assess PMS before and after splinting</li>
+        <li>Traction splint: mid-shaft femur fx only; contraindicated in hip, knee, ankle, open fx, pelvis</li>
+        <li>Long backboard vs. scoop stretcher: know indications</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Burns</h4>
+      <ul>
+        <li>Stop burning: remove smoldering clothing, cool with room-temp water ≤10 min</li>
+        <li>Rule of Nines adults: head 9%, each arm 9%, each leg 18%, ant. trunk 18%, post. trunk 18%, perineum 1%</li>
+        <li>Peds: head = 18%, each leg = 14%</li>
+        <li>Burn center criteria: face/hands/feet/genitalia, circumferential, electrical/chemical, &gt;10% BSA partial-thickness</li>
+        <li>Cover with dry sterile dressings; no ice or creams</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Medical emergencies</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Diabetic emergencies</h4>
+      <ul>
+        <li>Hypoglycemia: AMS + low glucose → oral glucose if conscious/able to swallow</li>
+        <li>Hyperglycemia: gradual onset, Kussmaul respirations, fruity breath — transport; no field correction</li>
+        <li>When in doubt: treat for hypoglycemia</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Seizures</h4>
+      <ul>
+        <li>Protect from injury — do not restrain, nothing in mouth</li>
+        <li>Lateral position after seizure (recovery position)</li>
+        <li>Postictal: decreased responsiveness expected — monitor airway</li>
+        <li>Status epilepticus: ≥5 min or no recovery between seizures — urgent transport</li>
+        <li>Febrile seizures in children: usually self-limited; still transport</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Anaphylaxis</h4>
+      <ul>
+        <li>Epinephrine auto-injector: 0.3 mg adult, 0.15 mg peds (&lt;30 kg)</li>
+        <li>Injection site: outer mid-thigh, through clothing if necessary</li>
+        <li>Second dose at 5–15 min if no improvement and transport time allows</li>
+        <li>Diphenhydramine: adjunct only — never replaces epi</li>
+        <li>Supine + legs elevated if hypotension; sitting if respiratory distress</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Stroke</h4>
+      <ul>
+        <li>Cincinnati/FAST — positive screen = stroke until proven otherwise</li>
+        <li>Last known well = time zero for thrombolytics</li>
+        <li>Do not give glucose unless confirmed hypoglycemia</li>
+        <li>Maintain airway; O2 if SpO2 &lt;94%; rapid transport to stroke center</li>
+        <li>Pre-notify hospital with stroke alert</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>OB/GYN emergencies</h4>
+      <ul>
+        <li>Normal delivery: support head, guide body, do not pull</li>
+        <li>Shoulder dystocia: McRoberts maneuver + suprapubic pressure</li>
+        <li>Cord prolapse: elevate presenting part with gloved hand; transport</li>
+        <li>Breech: support but do not pull; create airway space if head trapped</li>
+        <li>Eclampsia: seizure in 3rd trimester — protect, transport, avoid stimulation</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Behavioral emergencies</h4>
+      <ul>
+        <li>Safety first: de-escalate, never turn your back, maintain exit access</li>
+        <li>Restraint: minimum necessary force; protocol-based; document thoroughly</li>
+        <li>Excited delirium: hyperthermia, cardiac arrest risk — urgent ALS/hospital</li>
+        <li>Rule out organic causes: hypoglycemia, hypoxia, head injury</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Environmental emergencies</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Heat emergencies</h4>
+      <ul>
+        <li>Heat cramps: muscle cramps, normal AMS → rest, oral fluids, cool environment</li>
+        <li>Heat exhaustion: heavy sweating, weakness, cool/moist skin → cool, supine, fluids</li>
+        <li>Heat stroke: hot skin, AMS, high core temp → rapid cooling, immediate transport</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Cold emergencies</h4>
+      <ul>
+        <li>Hypothermia: mild (32–35°C) = shivering, alert; severe (&lt;32°C) = no shivering, AMS, arrhythmias</li>
+        <li>Handle gently — cold heart is irritable; rough movement causes V-fib</li>
+        <li>Remove wet clothing; passive rewarming; do not rub extremities</li>
+        <li>Frostbite: do not rewarm if refreezing possible; protect, pad, transport</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-points">
+    <div class="section-label">High-yield exam tips</div>
+    <p>For ACS: nitroglycerin contraindications — systolic &lt;100, PDE-5 inhibitor use within 24–48 hr, inferior MI with RV involvement.</p>
+    <p>Traction splint questions: if the answer includes a knee injury or open fracture with bone protrusion — traction splint is contraindicated.</p>
+    <p>On OB questions, the NREMT almost always expects you to transport rather than deliver on scene if there is time.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 5 -->
+<div id="d5" class="domain-panel">
+  <div class="domain-header">
+    <span class="domain-title">Domain 5 — Operations</span>
+    <span class="domain-pct" style="color:#5F5E5A;">9–13%</span>
+  </div>
+  <div class="pct-bar-wrap"><div class="pct-bar-track"><div class="pct-bar-fill" style="width:11%; background:#888780;"></div></div></div>
+  <p class="domain-desc">Covers EMS system functions: ICS, MCI, documentation, lifting/moving, vehicle ops, and EMT wellness. Reliable points — memorize the structures and criteria.</p>
+
+  <div class="section-label">Core topics</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <h4>Incident command system (ICS)</h4>
+      <ul>
+        <li>Incident Commander: overall scene authority</li>
+        <li>Unified Command: multi-agency events</li>
+        <li>NIMS: standardized ICS — National Incident Management System</li>
+        <li>Span of control: 3–7 subordinates per supervisor (optimal 5)</li>
+        <li>Sections: Operations, Logistics, Finance/Admin, Planning</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>MCI triage — START</h4>
+      <ul>
+        <li>Assess: respirations → perfusion → mental status</li>
+        <li>Black (expectant): no breathing after repositioning, or clearly dead</li>
+        <li>Red (immediate): RR &gt;30 or &lt;10, radial pulse absent, fails commands</li>
+        <li>Yellow (delayed): follows commands, perfusing, RR 10–29</li>
+        <li>Green (minor): ambulatory — "the walking wounded"</li>
+        <li>JumpSTART for peds: 15 rescue breaths before black tag</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Patient movement</h4>
+      <ul>
+        <li>Emergency moves: immediate life threat to patient or EMT</li>
+        <li>Non-urgent moves: proper technique, spine protection, equipment</li>
+        <li>Body mechanics: legs not back, keep load close, do not twist</li>
+        <li>Power grip: palms up, all fingers engaged, thumbs apart</li>
+        <li>Power lift: feet shoulder-width, back straight, lean into carry</li>
+        <li>Stair chair: preferred for ambulatory patients on stairs</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Documentation</h4>
+      <ul>
+        <li>PCR: legal document — complete, accurate, timely</li>
+        <li>Errors: single line through, initial, date — never white-out</li>
+        <li>Pertinent negatives: document what is absent and relevant</li>
+        <li>Refusal of care: competent adult, fully informed, signed</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>Air medical considerations</h4>
+      <ul>
+        <li>LZ size: 100×100 ft minimum, clear of obstacles and wires</li>
+        <li>Land/take off into the wind when possible</li>
+        <li>Never approach from the rear (tail rotor)</li>
+        <li>Approach only from front 180° when crew signals</li>
+        <li>Altitude: decreased PaO2, gas expansion (pneumothorax risk)</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <h4>EMT wellness &amp; safety</h4>
+      <ul>
+        <li>Standard precautions on every patient, every time</li>
+        <li>N95 for suspected airborne (TB); surgical mask for droplet</li>
+        <li>Decontamination: patient and equipment after hazmat exposure</li>
+        <li>CISM/CISD: critical incident stress management after traumatic events</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-points">
+    <div class="section-label">High-yield exam tips</div>
+    <p>START triage questions will give you a scenario — practice applying respiratory → perfusion → mental status until automatic.</p>
+    <p>Documentation error correction: single line through, initial, and date is the only legally correct method.</p>
+    <p>For helicopter LZ questions: never approach from the rear regardless of rotor status — this is an absolute.</p>
+  </div>
+</div>
+
+<!-- TEI -->
+<div id="tei" class="domain-panel">
+  <div class="domain-header">
+    <span class="domain-title">Technology enhanced items (TEIs)</span>
+    <span class="new-badge">Scored since April 7, 2025</span>
+  </div>
+  <p class="domain-desc">TEIs replace some traditional multiple-choice questions. BLS candidates do NOT get clinical judgment scenarios — those are AEMT/Paramedic only.</p>
+
+  <div class="section-label">TEI formats you will encounter</div>
+  <div class="tei-types">
+    <div class="tei-card">
+      <h4>Drag and drop</h4>
+      <p>Place items in the correct sequence or category. Common for assessment order, treatment priority, or triage classification. Think skill-sheet sequence.</p>
+    </div>
+    <div class="tei-card">
+      <h4>Build a list</h4>
+      <p>Select and order correct items from a longer list. Often used for prioritizing interventions or listing assessment steps. Order matters.</p>
+    </div>
+    <div class="tei-card">
+      <h4>Option box / multi-select</h4>
+      <p>Select all correct answers. Read all options before clicking. Common for contraindications, signs of a condition, or correct interventions.</p>
+    </div>
+    <div class="tei-card">
+      <h4>Multiple response</h4>
+      <p>Presented as checkboxes. Do not assume only one answer is correct — read the stem for "select all that apply" language.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem;" class="section-label">TEI strategy</div>
+  <div class="key-points">
+    <p>Drag-and-drop: default to your skill-sheet sequence. The NREMT sequences mirror the psychomotor skill sheets.</p>
+    <p>Build-a-list: think "what would I do first, second, third on scene?" — the priority order that governs your scene approach governs the list.</p>
+    <p>Multi-select/option box: eliminate clearly wrong answers first, then select all remaining that are correct.</p>
+    <p>Practice TEIs before test day — the format itself can cost time if it feels unfamiliar. Limmer EMTReview and Pocket Prep both now include TEI practice.</p>
+  </div>
+
+  <div style="margin-top:1.5rem;" class="section-label">About CAT scoring</div>
+  <div class="tip-box"><p>The exam stops when the computer reaches 95% statistical confidence that you are above or below the passing standard. Harder questions mean you are performing well — the algorithm gives harder items to candidates above passing level. Most candidates see 70–100 questions. Do not interpret question difficulty or quantity as a sign of failure.</p></div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.domain-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  var ids = ['overview','d1','d2','d3','d4','d5','tei'];
+  var idx = ids.indexOf(id);
+  if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
