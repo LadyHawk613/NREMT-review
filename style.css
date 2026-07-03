@@ -8,7 +8,8 @@
 }
 
 .card{
-  background:#141d1d;
+  background-color: #f4f4f4; /* Changes the background to a light gray */
+    color: #1a1a1a;            /* Keeps the text dark and highly visible */
   padding:15px;
   border-radius:10px;
   border:1px solid #2a3838;
